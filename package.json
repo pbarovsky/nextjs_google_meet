@@ -1,0 +1,33 @@
+{
+  "name": "nextjs-zoom-clone",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@clerk/nextjs": "^6.20.0",
+    "@stream-io/node-sdk": "^0.4.24",
+    "@stream-io/video-react-sdk": "^1.17.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.511.0",
+    "nanoid": "^5.1.5",
+    "next": "^15.3.2",
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.2",
+    "eslint-config-prettier": "^10.1.5",
+    "prettier": "^3.5.3",
+    "sass-embedded": "^1.89.0",
+    "typescript": "^5"
+  }
+}
