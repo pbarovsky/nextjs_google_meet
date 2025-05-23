@@ -2,7 +2,9 @@ import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@stream-io/video-react-sdk/dist/css/styles.css";
-import "./globals.css";
+import "./globals.scss";
+import sc from "../styles/main.module.scss";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +22,10 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
+          <main className={sc.main}>
+            <Navbar />
             {children}
+          </main>
         </body>
       </html>
     </ClerkProvider>
