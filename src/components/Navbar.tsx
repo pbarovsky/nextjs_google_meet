@@ -10,10 +10,10 @@ export default function Navbar() {
   const pathname = usePathname();
   return (
     <header className={sc.header}>
-      <div className={sc.logo}>
+      <Link href="/" className={sc.logo}>
         <Image src="/logo.svg" alt="Logo" width={50} height={50} />
-        <span>LOGO</span>
-      </div>
+        <span>NextJs Meet</span>
+      </Link>
       <div className={sc.nav_links}>
         <Link href="/" className={pathname === "/" ? sc.activeLink : ""}>
           New meeting

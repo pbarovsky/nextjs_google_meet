@@ -12,7 +12,7 @@ interface TextareaProps {
 export default function Textarea({
   value,
   onChange,
-  label = "Enter text",
+  label,
   placeholder = "Type something...",
   maxLength = 500,
 }: TextareaProps) {

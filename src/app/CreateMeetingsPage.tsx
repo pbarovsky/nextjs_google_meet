@@ -9,6 +9,7 @@ import { useState } from "react";
 import Checkbox from "@/components/Checkbox";
 import Radio from "@/components/Radio";
 import Textarea from "@/components/Textarea";
+import Button from "@/components/Button";
 
 export default function CreateMeetingsPage() {
   const [descriptionInput, setDescriptionInput] = useState("");
@@ -50,7 +51,7 @@ export default function CreateMeetingsPage() {
 
   return (
     <div className={sc.meetings}>
-      <h1>Welcome {user.username}</h1>
+      <h1>Welcome {user.username}!</h1>
       <div className={sc.meetings_container}>
         <h2>Create a new meeting</h2>
         <DescriptionInput
@@ -62,9 +63,7 @@ export default function CreateMeetingsPage() {
           value={participantsInput}
           onChange={setParticipantsInput}
         />
-        <button className="" onClick={createMeeting}>
-          Create meeting
-        </button>
+        <Button onClick={createMeeting}>Create meeting</Button>
       </div>
       {call && <MeetingLink call={call} />}
     </div>
@@ -80,23 +79,23 @@ function DescriptionInput({ value, onChange }: DescriptionInputProps) {
   const [active, setActive] = useState(false);
 
   return (
-    <div className="">
-      <div className="">Meetings info:</div>
+    <div className={sc.description}>
+      <span>Meetings info:</span>
       <Checkbox
+        label="Add description"
         checked={active}
         onChange={(e) => {
           setActive(e.target.checked);
           onChange("");
         }}
-        label="Add description"
       />
       {active && (
         <label>
-          <span>Description</span>
           <Textarea
             value={value}
             onChange={(e) => onChange(e.target.value)}
             maxLength={500}
+            label="Description"
           />
         </label>
       )}
@@ -118,8 +117,8 @@ function StartTimeInput({ value, onChange }: StartTimeInputProps) {
     .slice(0, 16);
 
   return (
-    <div>
-      <div>Meeting start: </div>
+    <div className={sc.startTime}>
+      <span>Meeting start: </span>
       <Radio
         checked={!active}
         onChange={() => {
@@ -137,16 +136,16 @@ function StartTimeInput({ value, onChange }: StartTimeInputProps) {
         label="Start meeting at date/time"
       />
       {active && (
-        <label>
-          <span>Start time</span>
+        <div className={sc.inputWrapper}>
+          <span>Start time </span>
           <input
             type="datetime-local"
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className=""
+            className={sc.input}
             min={dateTimeLocalNow}
           />
-        </label>
+        </div>
       )}
     </div>
   );
@@ -161,8 +160,8 @@ function ParticipantInput({ value, onChange }: ParticipantInputProps) {
   const [active, setActive] = useState(false);
 
   return (
-    <div>
-      <div>Participants:</div>
+    <div className={sc.participants}>
+      <span>Participants:</span>
       <Radio
         checked={!active}
         onChange={() => {
@@ -181,11 +180,11 @@ function ParticipantInput({ value, onChange }: ParticipantInputProps) {
       />
       {active && (
         <label>
-          <span>Participants emails</span>
           <Textarea
             value={value}
             placeholder="Enter participants emails separated by commas"
             onChange={(e) => onChange(e.target.value)}
+            label="Participants emails"
           />
         </label>
       )}
