@@ -5,16 +5,17 @@ import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 export default function Navbar() {
   return (
     <header className={sc.header}>
-      <Link href="/">New meeting</Link>
-      <SignedIn>
-        <div className={sc.meeting}>
+      <div className={sc.logo}>LOGO</div>
+      <div className={sc.nav_links}>
+        <Link href="/">New meeting</Link>
+        <SignedIn>
           <Link href="/meeting">Meetings</Link>
           <UserButton />
-        </div>
-      </SignedIn>
-      <SignedOut>
-        <SignInButton />
-      </SignedOut>
+        </SignedIn>
+        <SignedOut>
+          <SignInButton />
+        </SignedOut>
+      </div>
     </header>
   );
 }

@@ -1,0 +1,15 @@
+.meetings_container {
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: rgb(229, 237, 238);
+  padding: 10px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-items: center;
+  cursor: pointer;
+}
