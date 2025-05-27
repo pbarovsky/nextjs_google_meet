@@ -1,15 +1,23 @@
+.meetings {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
 .meetings_container {
   width: 80%;
   margin: 0 auto;
   border-radius: 10px;
-  background-color: rgb(229, 237, 238);
+  background-color: #eeeeee;
   padding: 10px;
 }
 
-.checkbox {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  justify-items: center;
-  cursor: pointer;
-}
+// .checkbox {
+//   display: flex;
+//   align-items: center;
+//   justify-items: center;
+//   cursor: pointer;
+// }
+
+/* checkbox */
