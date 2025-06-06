@@ -4,6 +4,7 @@
   @include th.themify(th.$themes) {
     background-color: th.themed("buttonBg");
     color: th.themed("buttonTextColor");
+    border: 1px solid th.themed("buttonBorder");
   }
 
   position: relative;
@@ -14,47 +15,37 @@
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-  border: 1px solid;
   border-radius: 8px;
   outline: none;
   overflow: hidden;
   transition:
-    background-color 0.5s ease-in-out,
-    color 0.5s ease-in-out;
+    background-color 0.1s ease-in-out,
+    color 0.1s ease-in-out;
   text-align: center;
   width: max-content;
-
-  span {
-    margin: 10px;
-  }
 
   &:hover {
     @include th.themify(th.$themes) {
       background-color: th.themed("buttonBgHover");
       color: th.themed("buttonTextColorHover");
+      border: 1px solid th.themed("buttonBorderHover");
     }
+  }
+
+  &:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease-in-out;
+  }
+
+  span {
+    margin: 10px;
   }
 }
 
-.button::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  content: "";
-  border-radius: 50%;
-  display: block;
-  width: 20em;
-  height: 20em;
-  left: -5em;
-  text-align: center;
-  transition: background-color 3s ease-out;
-  z-index: -1;
-}
-
-.button:active {
-  transform: scale(0.95);
-  transition: transform 0.1s ease-in-out;
+.button_icon {
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
 }

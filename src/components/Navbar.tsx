@@ -6,6 +6,8 @@ import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
+import Button from "./Button";
+import { Moon, Sun } from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -35,7 +37,9 @@ export default function Navbar() {
           >
             Meetings
           </Link>
-          <button onClick={toggleTheme}>theme</button>
+          <Button type="icon" onClick={toggleTheme}>
+            {theme === "dark" ? <Moon /> : <Sun />}
+          </Button>
           <UserButton />
         </SignedIn>
         <SignedOut>

@@ -1,21 +1,33 @@
-// _themes.scss
+@use "variables" as *;
 
 $themes: (
   light: (
-    background-color: #ffffff,
-    textColor: #000000,
-    buttonBg: #ffffff,
-    buttonBgHover: #000000,
-    buttonTextColor: #000000,
-    buttonTextColorHover: #ffffff,
+    background-color: $white,
+    textColor: $black,
+
+    buttonBg: $white,
+    buttonBgHover: $black,
+    buttonTextColor: $black,
+    buttonTextColorHover: $white,
+    buttonBorder: $black,
+    buttonBorderHover: $black,
+
+    inputToggleBg: $black,
+    inputToggleShad1: $white,
   ),
   dark: (
-    background-color: #000000,
-    textColor: #ffffff,
-    buttonBg: #000000,
-    buttonBgHover: #ffffff,
-    buttonTextColor: #ffffff,
-    buttonTextColorHover: #f0d540,
+    background-color: $black,
+    textColor: $white,
+
+    buttonBg: $black,
+    buttonBgHover: $primary,
+    buttonTextColor: $white,
+    buttonTextColorHover: $black,
+    buttonBorder: $white,
+    buttonBorderHover: $primary,
+
+    inputToggleBg: $white,
+    inputToggleShad1: $black,
   ),
 );
 

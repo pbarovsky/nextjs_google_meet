@@ -6,11 +6,10 @@ import sc_loader from "../styles/components/Loader.module.scss";
 import { Copy, Loader2 } from "lucide-react";
 import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
 import { useState } from "react";
-import Checkbox from "@/components/Checkbox";
-import Radio from "@/components/Radio";
 import Textarea from "@/components/Textarea";
 import Button from "@/components/Button";
 import Link from "next/link";
+import InputToggle from "@/components/InputToggle";
 
 export default function CreateMeetingsPage() {
   const [descriptionInput, setDescriptionInput] = useState("");
@@ -68,7 +67,9 @@ export default function CreateMeetingsPage() {
             onChange={setParticipantsInput}
           />
         </div>
-        <Button onClick={createMeeting}>Create meeting</Button>
+        <Button type="primary" onClick={createMeeting}>
+          Create meeting
+        </Button>
       </div>
       {call && <MeetingLink call={call} />}
     </div>
@@ -86,13 +87,14 @@ function DescriptionInput({ value, onChange }: DescriptionInputProps) {
   return (
     <div className={sc.description}>
       <h3 className={sc.h3}>Meetings info:</h3>
-      <Checkbox
+      <InputToggle
         label="Add description"
         checked={active}
         onChange={(e) => {
           setActive(e.target.checked);
           onChange("");
         }}
+        type="checkbox"
       />
       {active && (
         <label>
@@ -124,15 +126,17 @@ function StartTimeInput({ value, onChange }: StartTimeInputProps) {
   return (
     <div className={sc.startTime}>
       <h3 className={sc.h3}>Meeting start: </h3>
-      <Radio
+      <InputToggle
         checked={!active}
+        type="radio"
+        label="Start meeting immediately"
         onChange={() => {
           setActive(false);
           onChange("");
         }}
-        label="Start meeting immediately"
       />
-      <Radio
+      <InputToggle
+        type="radio"
         checked={active}
         onChange={() => {
           setActive(true);
@@ -167,20 +171,16 @@ function ParticipantInput({ value, onChange }: ParticipantInputProps) {
   return (
     <div className={sc.participants}>
       <h3 className={sc.h3}>Participants:</h3>
-      <Radio
+      <InputToggle
+        type="radio"
         checked={!active}
-        onChange={() => {
-          setActive(false);
-          onChange("");
-        }}
+        onChange={() => setActive(!active)}
         label="Everyone with link can join"
       />
-      <Radio
+      <InputToggle
+        type="radio"
         checked={active}
-        onChange={() => {
-          setActive(true);
-          onChange("");
-        }}
+        onChange={() => setActive(!active)}
         label="Private meeting"
       />
       {active && (
@@ -218,9 +218,9 @@ function MeetingLink({ call }: MeetingLinkProps) {
       >
         {meetingLink}
       </Link>
-      <button className={sc.copy_button} onClick={copyToClipboard}>
-        <Copy />
-      </button>
+      <Button type="icon" onClick={copyToClipboard}>
+        <Copy className={sc.copyBtn}/>
+      </Button>
     </div>
   );
 }

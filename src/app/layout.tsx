@@ -26,10 +26,8 @@ export default function RootLayout({
         <body className={inter.className}>
           <ThemeProvider>
             <ClientProvider>
-              <main className={sc.main}>
-                <Navbar />
-                {children}
-              </main>
+              <Navbar />
+              <main className={sc.main}>{children}</main>
             </ClientProvider>
           </ThemeProvider>
         </body>
