@@ -3,13 +3,14 @@
 import { useUser } from "@clerk/nextjs";
 import sc from "../styles/pages/CreateMeetingsPage.module.scss";
 import sc_loader from "../styles/components/Loader.module.scss";
-import { Loader2 } from "lucide-react";
+import { Copy, Loader2 } from "lucide-react";
 import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
 import { useState } from "react";
 import Checkbox from "@/components/Checkbox";
 import Radio from "@/components/Radio";
 import Textarea from "@/components/Textarea";
 import Button from "@/components/Button";
+import Link from "next/link";
 
 export default function CreateMeetingsPage() {
   const [descriptionInput, setDescriptionInput] = useState("");
@@ -51,18 +52,22 @@ export default function CreateMeetingsPage() {
 
   return (
     <div className={sc.meetings}>
-      <h1>Welcome {user.username}!</h1>
+      <h1 className={sc.slogan}>
+        Connect, collaborate, create — seamless video calls for teams.
+      </h1>
       <div className={sc.meetings_container}>
-        <h2>Create a new meeting</h2>
+        <h2 className={sc.h2}>Create a new meeting</h2>
         <DescriptionInput
           value={descriptionInput}
           onChange={setDescriptionInput}
         />
-        <StartTimeInput value={startTimeInput} onChange={setStartTimeInput} />
-        <ParticipantInput
-          value={participantsInput}
-          onChange={setParticipantsInput}
-        />
+        <div className={sc.divider}>
+          <StartTimeInput value={startTimeInput} onChange={setStartTimeInput} />
+          <ParticipantInput
+            value={participantsInput}
+            onChange={setParticipantsInput}
+          />
+        </div>
         <Button onClick={createMeeting}>Create meeting</Button>
       </div>
       {call && <MeetingLink call={call} />}
@@ -80,7 +85,7 @@ function DescriptionInput({ value, onChange }: DescriptionInputProps) {
 
   return (
     <div className={sc.description}>
-      <span>Meetings info:</span>
+      <h3 className={sc.h3}>Meetings info:</h3>
       <Checkbox
         label="Add description"
         checked={active}
@@ -118,7 +123,7 @@ function StartTimeInput({ value, onChange }: StartTimeInputProps) {
 
   return (
     <div className={sc.startTime}>
-      <span>Meeting start: </span>
+      <h3 className={sc.h3}>Meeting start: </h3>
       <Radio
         checked={!active}
         onChange={() => {
@@ -161,7 +166,7 @@ function ParticipantInput({ value, onChange }: ParticipantInputProps) {
 
   return (
     <div className={sc.participants}>
-      <span>Participants:</span>
+      <h3 className={sc.h3}>Participants:</h3>
       <Radio
         checked={!active}
         onChange={() => {
@@ -198,5 +203,24 @@ interface MeetingLinkProps {
 
 function MeetingLink({ call }: MeetingLinkProps) {
   const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${call.id}`;
-  return <div>{meetingLink}</div>;
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(meetingLink);
+  };
+
+  return (
+    <div className={sc.message_link}>
+      <Link
+        href={meetingLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={sc.link}
+      >
+        {meetingLink}
+      </Link>
+      <button className={sc.copy_button} onClick={copyToClipboard}>
+        <Copy />
+      </button>
+    </div>
+  );
 }

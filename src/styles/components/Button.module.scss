@@ -1,3 +1,60 @@
+@use "../themes.scss" as th;
+
 .button {
+  @include th.themify(th.$themes) {
+    background-color: th.themed("buttonBg");
+    color: th.themed("buttonTextColor");
+  }
+
+  position: relative;
+  padding: 5px 15px;
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid;
+  border-radius: 8px;
+  outline: none;
+  overflow: hidden;
+  transition:
+    background-color 0.5s ease-in-out,
+    color 0.5s ease-in-out;
+  text-align: center;
   width: max-content;
+
+  span {
+    margin: 10px;
+  }
+
+  &:hover {
+    @include th.themify(th.$themes) {
+      background-color: th.themed("buttonBgHover");
+      color: th.themed("buttonTextColorHover");
+    }
+  }
+}
+
+.button::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  content: "";
+  border-radius: 50%;
+  display: block;
+  width: 20em;
+  height: 20em;
+  left: -5em;
+  text-align: center;
+  transition: background-color 3s ease-out;
+  z-index: -1;
+}
+
+.button:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease-in-out;
 }

@@ -8,14 +8,20 @@ interface RadioProps {
 
 export default function Radio({ checked, onChange, label }: RadioProps) {
   return (
-    <div className={sc.radioContent}>
-      <label className={sc.radioLabel}>
-        <input type="radio" checked={checked} onChange={onChange} />
+    <div className={sc.radio_сontent}>
+      <label className={sc.radio_label}>
+        <input
+          className={sc.radio}
+          type="radio"
+          checked={checked}
+          onChange={onChange}
+        />
         <div className={sc.transition}></div>
       </label>
-      <div className={sc.textDesc}>
-        <label className={sc.text}>{label}</label>
-      </div>
+      <label className={sc.text_desc} onClick={onChange}>
+        {" "}
+        {label}
+      </label>
     </div>
   );
 }

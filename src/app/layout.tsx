@@ -6,6 +6,7 @@ import "./globals.scss";
 import sc from "../styles/main.module.scss";
 import Navbar from "@/components/Navbar";
 import ClientProvider from "./ClientProvider";
+import ThemeProvider from "./ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,14 +22,16 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body className={inter.className}>
-          <ClientProvider>
-            <main className={sc.main}>
-              <Navbar />
-              {children}
-            </main>
-          </ClientProvider>
+          <ThemeProvider>
+            <ClientProvider>
+              <main className={sc.main}>
+                <Navbar />
+                {children}
+              </main>
+            </ClientProvider>
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
