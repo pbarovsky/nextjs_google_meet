@@ -17,8 +17,8 @@ export default function Textarea({
   maxLength = 500,
 }: TextareaProps) {
   return (
-    <div className={sc.textAreaWrapper}>
-      <label className={sc.label}>{label}</label>
+    <label className={sc.label}>
+      {label && <span>{label}</span>}
       <textarea
         className={sc.textArea}
         value={value}
@@ -26,7 +26,6 @@ export default function Textarea({
         placeholder={placeholder}
         maxLength={maxLength}
       />
-      <span className={sc.focusBorder}></span>
-    </div>
+    </label>
   );
 }

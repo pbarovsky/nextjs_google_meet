@@ -1,12 +1,6 @@
 @use "../themes.scss" as th;
 
 .button {
-  @include th.themify(th.$themes) {
-    background-color: th.themed("buttonBg");
-    color: th.themed("buttonTextColor");
-    border: 1px solid th.themed("buttonBorder");
-  }
-
   position: relative;
   padding: 5px 15px;
   display: flex;
@@ -24,11 +18,17 @@
   text-align: center;
   width: max-content;
 
+  @include th.themify(th.$themes) {
+    background-color: th.themed("main");
+    color: th.themed("secondary");
+    border: 1px solid th.themed("secondary");
+  }
+
   &:hover {
     @include th.themify(th.$themes) {
-      background-color: th.themed("buttonBgHover");
-      color: th.themed("buttonTextColorHover");
-      border: 1px solid th.themed("buttonBorderHover");
+      background-color: th.themed("secondary");
+      color: th.themed("main");
+      border: 1px solid th.themed("main");
     }
   }
 
@@ -48,4 +48,5 @@
   justify-content: center;
   align-items: center;
   border: none;
+  cursor: pointer;
 }

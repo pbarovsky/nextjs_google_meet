@@ -1,3 +1,5 @@
+@use "../themes" as th;
+
 .header {
   height: 50px;
   display: flex;
@@ -28,13 +30,17 @@
   transition: all 0.3s ease-in-out;
 
   &:hover {
-    background-color: rgba(240, 213, 64, 0.2);
-    color: #f0d540;
+    @include th.themify(th.$themes) {
+      color: th.themed("accent");
+      background-color: th.themed("accent-second");
+    }
   }
 }
 
 .activeLink {
   font-weight: bold;
-  color: #f0d540;
   position: relative;
+  @include th.themify(th.$themes) {
+    color: th.themed("accent");
+  }
 }

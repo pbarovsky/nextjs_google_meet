@@ -1,0 +1,41 @@
+@use "../themes.scss" as th;
+
+.calendar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  height: 156px;
+}
+
+.day {
+  text-align: center;
+  padding: 6px 0;
+  cursor: pointer;
+  border-radius: 4px;
+
+  &:hover {
+    @include th.themify(th.$themes) {
+      background: th.themed("accent-second");
+    }
+  }
+
+  &.selected {
+    @include th.themify(th.$themes) {
+      background: th.themed("accent");
+      color: th.themed("main");
+    }
+  }
+}

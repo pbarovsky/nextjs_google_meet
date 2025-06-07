@@ -5,11 +5,12 @@ import sc from "../styles/pages/CreateMeetingsPage.module.scss";
 import sc_loader from "../styles/components/Loader.module.scss";
 import { Copy, Loader2 } from "lucide-react";
 import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
-import { useState } from "react";
+import { useId, useState } from "react";
 import Textarea from "@/components/Textarea";
 import Button from "@/components/Button";
 import Link from "next/link";
 import InputToggle from "@/components/InputToggle";
+import DatePicker from "@/components/DatePicker";
 
 export default function CreateMeetingsPage() {
   const [descriptionInput, setDescriptionInput] = useState("");
@@ -84,6 +85,8 @@ interface DescriptionInputProps {
 function DescriptionInput({ value, onChange }: DescriptionInputProps) {
   const [active, setActive] = useState(false);
 
+  const DescId = useId();
+
   return (
     <div className={sc.description}>
       <h3 className={sc.h3}>Meetings info:</h3>
@@ -95,6 +98,7 @@ function DescriptionInput({ value, onChange }: DescriptionInputProps) {
           onChange("");
         }}
         type="checkbox"
+        id={DescId}
       />
       {active && (
         <label>
@@ -117,6 +121,10 @@ interface StartTimeInputProps {
 
 function StartTimeInput({ value, onChange }: StartTimeInputProps) {
   const [active, setActive] = useState(false);
+
+  const StartMeetDateId = useId();
+  const StartMeetImmediatelyId = useId();
+
   const dateTimeLocalNow = new Date(
     new Date().getTime() - new Date().getTimezoneOffset() * 60_000
   )
@@ -126,34 +134,32 @@ function StartTimeInput({ value, onChange }: StartTimeInputProps) {
   return (
     <div className={sc.startTime}>
       <h3 className={sc.h3}>Meeting start: </h3>
-      <InputToggle
-        checked={!active}
-        type="radio"
-        label="Start meeting immediately"
-        onChange={() => {
-          setActive(false);
-          onChange("");
-        }}
-      />
-      <InputToggle
-        type="radio"
-        checked={active}
-        onChange={() => {
-          setActive(true);
-          onChange(dateTimeLocalNow);
-        }}
-        label="Start meeting at date/time"
-      />
+      <div className={sc.radio_wrapper}>
+        <InputToggle
+          checked={!active}
+          type="radio"
+          label="Start meeting immediately"
+          onChange={() => {
+            setActive(false);
+            onChange("");
+          }}
+          id={StartMeetImmediatelyId}
+        />
+        <InputToggle
+          type="radio"
+          checked={active}
+          onChange={() => {
+            setActive(true);
+            onChange(dateTimeLocalNow);
+          }}
+          label="Start meeting at date/time"
+          id={StartMeetDateId}
+        />
+      </div>
+
       {active && (
         <div className={sc.inputWrapper}>
-          <span>Start time </span>
-          <input
-            type="datetime-local"
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            className={sc.input}
-            min={dateTimeLocalNow}
-          />
+          <DatePicker value={value} onChange={onChange} />
         </div>
       )}
     </div>
@@ -168,30 +174,35 @@ interface ParticipantInputProps {
 function ParticipantInput({ value, onChange }: ParticipantInputProps) {
   const [active, setActive] = useState(false);
 
+  const PublicMeetId = useId();
+  const PrivateMeetId = useId();
+
   return (
     <div className={sc.participants}>
       <h3 className={sc.h3}>Participants:</h3>
-      <InputToggle
-        type="radio"
-        checked={!active}
-        onChange={() => setActive(!active)}
-        label="Everyone with link can join"
-      />
-      <InputToggle
-        type="radio"
-        checked={active}
-        onChange={() => setActive(!active)}
-        label="Private meeting"
-      />
+      <div className={sc.radio_wrapper}>
+        <InputToggle
+          type="radio"
+          checked={!active}
+          onChange={() => setActive(!active)}
+          label="Everyone with link can join"
+          id={PublicMeetId}
+        />
+        <InputToggle
+          type="radio"
+          checked={active}
+          onChange={() => setActive(!active)}
+          label="Private meeting"
+          id={PrivateMeetId}
+        />
+      </div>
       {active && (
-        <label>
-          <Textarea
-            value={value}
-            placeholder="Enter participants emails separated by commas"
-            onChange={(e) => onChange(e.target.value)}
-            label="Participants emails"
-          />
-        </label>
+        <Textarea
+          value={value}
+          placeholder="Enter participants emails separated by commas"
+          onChange={(e) => onChange(e.target.value)}
+          label="Participants emails"
+        />
       )}
     </div>
   );
@@ -219,7 +230,7 @@ function MeetingLink({ call }: MeetingLinkProps) {
         {meetingLink}
       </Link>
       <Button type="icon" onClick={copyToClipboard}>
-        <Copy className={sc.copyBtn}/>
+        <Copy className={sc.copy} />
       </Button>
     </div>
   );

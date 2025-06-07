@@ -17,14 +17,13 @@
   }
 }
 
-.textArea {
+.input {
   width: 100%;
-  min-height: 44px;
-  padding: 5px;
+  padding: 12px;
   border-radius: 8px;
   outline: none;
   transition: border 0.3s ease-in-out;
-  resize: none;
+  height: 44px;
 
   @include th.themify(th.$themes) {
     border: 1px solid th.themed("label");

@@ -1,0 +1,60 @@
+@use "../themes.scss" as th;
+
+.picker {
+  position: relative;
+  display: inline-block;
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendarBtn {
+  position: absolute;
+  top: 70%;
+  right: 1%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  @include th.themify(th.$themes) {
+    background: th.themed("backdrop");
+  }
+}
+
+.modal {
+  padding: 5px;
+  border-radius: 8px;
+  position: relative;
+  min-width: 300px;
+  height: 315px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 40px;
+  @include th.themify(th.$themes) {
+    background: th.themed("main");
+  }
+}
+
+.closeBtn {
+  position: absolute;
+  right: 8px;
+  top: 5px;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}

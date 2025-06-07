@@ -2,32 +2,24 @@
 
 $themes: (
   light: (
-    background-color: $white,
-    textColor: $black,
+    accent: $yellow,
+    accent-second: $yellow-transparent,
+    main: $white,
+    secondary: $black,
 
-    buttonBg: $white,
-    buttonBgHover: $black,
-    buttonTextColor: $black,
-    buttonTextColorHover: $white,
-    buttonBorder: $black,
-    buttonBorderHover: $black,
-
-    inputToggleBg: $black,
-    inputToggleShad1: $white,
+    backdrop: rgba(0, 0, 0, 0.4),
+    label: #8d8d84,
+    input: #f5f5f5,
   ),
   dark: (
-    background-color: $black,
-    textColor: $white,
+    accent: $yellow,
+    accent-second: $yellow-transparent,
+    main: $black,
+    secondary: $white,
 
-    buttonBg: $black,
-    buttonBgHover: $primary,
-    buttonTextColor: $white,
-    buttonTextColorHover: $black,
-    buttonBorder: $white,
-    buttonBorderHover: $primary,
-
-    inputToggleBg: $white,
-    inputToggleShad1: $black,
+    backdrop: rgba(37, 37, 37, 0.4),
+    label: #68685f,
+    input: #0f0f0f,
   ),
 );
 

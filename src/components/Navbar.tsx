@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import Button from "./Button";
 import { Moon, Sun } from "lucide-react";
+import { dark } from "@clerk/themes";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -40,7 +41,11 @@ export default function Navbar() {
           <Button type="icon" onClick={toggleTheme}>
             {theme === "dark" ? <Moon /> : <Sun />}
           </Button>
-          <UserButton />
+          <UserButton
+            appearance={{
+              baseTheme: theme === "dark" ? dark : undefined,
+            }}
+          />
         </SignedIn>
         <SignedOut>
           <SignInButton />

@@ -1,10 +1,22 @@
-@use "../variables" as *;
 @use "../themes" as th;
 
 .toggle_content {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 15px;
+  width: max-content;
+  height: 32px;
+
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    @include th.themify(th.$themes) {
+      background-color: th.themed("accent-second");
+    }
+  }
 }
 
 .inputToggle {
@@ -13,22 +25,21 @@
   height: 10px;
   border-radius: 50%;
   position: relative;
-  @include th.themify(th.$themes) {
-    box-shadow:
-      0px 0px 0px 4px th.themed("inputToggleShad1"),
-      0px 0px 0px 6px $primary;
-  }
 
   transition: 200ms all;
   cursor: pointer;
   overflow: hidden;
   flex-shrink: 0;
+
+  @include th.themify(th.$themes) {
+    box-shadow:
+      0px 0px 0px 4px th.themed("main"),
+      0px 0px 0px 6px th.themed("accent");
+    background-color: th.themed("main");
+  }
 }
 
-.checkBox {
-  @extend .inputToggle;
-}
-
+.checkBox,
 .radioLabel {
   @extend .inputToggle;
 }
@@ -43,16 +54,16 @@
 .transition {
   width: 40px;
   height: 40px;
-
-  @include th.themify(th.$themes) {
-    background-color: th.themed("inputToggleBg");
-  }
   top: -52px;
   left: -52px;
   position: absolute;
   transform: rotateZ(45deg);
   z-index: 100;
   transition: 300ms ease;
+
+  @include th.themify(th.$themes) {
+    background-color: th.themed("secondary");
+  }
 }
 
 .inputToggle input:checked + .transition {
