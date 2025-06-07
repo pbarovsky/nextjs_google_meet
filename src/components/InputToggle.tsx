@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import sc from "../styles/components/InputToggle.module.scss";
+import sc from "@styles/components/InputToggle.module.scss";
 
 interface InputToggleProps {
   checked: boolean;

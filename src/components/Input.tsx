@@ -1,5 +1,5 @@
 import { ChangeEvent, FocusEvent } from "react";
-import sc from "../styles/components/Input.module.scss";
+import sc from "@styles/components/Input.module.scss";
 
 interface InputProps {
   value: string | number;

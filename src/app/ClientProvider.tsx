@@ -6,11 +6,10 @@ import {
   StreamVideoClient,
   User,
 } from "@stream-io/video-react-sdk";
-import { Loader2 } from "lucide-react";
 import { ReactNode, useEffect, useState } from "react";
-import sc from "../styles/components/Loader.module.scss";
 import { nanoid } from "nanoid";
 import { getToken } from "./actions";
+import Loader from "@/components/Loader";
 
 interface ClientProviderProps {
   children: ReactNode;
@@ -20,11 +19,7 @@ export default function ClientProvider({ children }: ClientProviderProps) {
   const videoClient = useInitializeVideoClient();
 
   if (!videoClient) {
-    return (
-      <div className={sc.loader_container}>
-        <Loader2 className={sc.loader} />
-      </div>
-    );
+    return <Loader />;
   }
 
   return <StreamVideo client={videoClient}>{children}</StreamVideo>;

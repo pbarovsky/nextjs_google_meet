@@ -1,0 +1,41 @@
+@use "./themes.scss" as th;
+
+%fieldLabel {
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  span {
+    margin-bottom: 0px;
+    @include th.themify(th.$themes) {
+      color: th.themed("label");
+    }
+  }
+}
+
+%field {
+  width: 100%;
+  padding: 5px 10px;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.3s ease-in-out;
+  height: 44px;
+  resize: none;
+  overflow: hidden;
+
+  @include th.themify(th.$themes) {
+    border: 1px solid th.themed("label");
+    background: th.themed("input");
+    color: th.themed("secondary");
+  }
+}
+
+%radioWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

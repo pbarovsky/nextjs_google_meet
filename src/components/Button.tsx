@@ -1,8 +1,8 @@
-import React from "react";
-import sc from "../styles/components/Button.module.scss";
+import sc from "@styles/components/Button.module.scss";
+import { ReactNode } from "react";
 
 interface ButtonProps {
-  children: React.ReactNode;
+  children: ReactNode;
   onClick?: () => void;
   type: "primary" | "icon";
   className?: string;

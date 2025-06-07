@@ -1,16 +1,17 @@
 "use client";
 
 import { useUser } from "@clerk/nextjs";
-import sc from "../styles/pages/CreateMeetingsPage.module.scss";
-import sc_loader from "../styles/components/Loader.module.scss";
-import { Copy, Loader2 } from "lucide-react";
+import { Copy } from "lucide-react";
 import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
 import { useId, useState } from "react";
 import Textarea from "@/components/Textarea";
 import Button from "@/components/Button";
 import Link from "next/link";
 import InputToggle from "@/components/InputToggle";
-import DatePicker from "@/components/DatePicker";
+import DatePicker from "@/components/DatePicker/DatePicker";
+import Loader from "@/components/Loader";
+
+import sc from "@styles/pages/CreateMeetingsPage.module.scss";
 
 export default function CreateMeetingsPage() {
   const [descriptionInput, setDescriptionInput] = useState("");
@@ -47,7 +48,7 @@ export default function CreateMeetingsPage() {
   }
 
   if (!client || !user) {
-    return <Loader2 className={sc_loader.loader} />;
+    return <Loader />;
   }
 
   return (

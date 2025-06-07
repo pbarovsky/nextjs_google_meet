@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Input from "./Input";
-import sc from "../styles/components/TimePicker.module.scss";
+import Input from "../../Input";
+import sc from "@/styles/components/Time.module.scss";
 
-interface TimePickerProps {
+interface TimeProps {
   value: string;
   onChange: (value: string) => void;
 }
 
-const TimePicker: React.FC<TimePickerProps> = ({ value, onChange }) => {
+export default function Time({ value, onChange }: TimeProps) {
   const [hourStr, setHourStr] = useState(value.split(":")[0]);
   const [minuteStr, setMinuteStr] = useState(value.split(":")[1]);
 
@@ -74,6 +74,4 @@ const TimePicker: React.FC<TimePickerProps> = ({ value, onChange }) => {
       />
     </div>
   );
-};
-
-export default TimePicker;
+}

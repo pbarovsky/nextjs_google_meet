@@ -1,21 +1,19 @@
-@use "variables" as *;
-
 $themes: (
   light: (
-    accent: $yellow,
-    accent-second: $yellow-transparent,
-    main: $white,
-    secondary: $black,
+    accent: #f0d540,
+    accent-second: rgba(240, 213, 64, 0.2),
+    main: #ffffff,
+    secondary: #000000,
 
     backdrop: rgba(0, 0, 0, 0.4),
     label: #8d8d84,
     input: #f5f5f5,
   ),
   dark: (
-    accent: $yellow,
-    accent-second: $yellow-transparent,
-    main: $black,
-    secondary: $white,
+    accent: #f0d540,
+    accent-second: rgba(240, 213, 64, 0.2),
+    main: #000000,
+    secondary: #ffffff,
 
     backdrop: rgba(37, 37, 37, 0.4),
     label: #68685f,

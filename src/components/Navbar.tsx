@@ -1,14 +1,15 @@
 "use client";
 
-import Link from "next/link";
-import sc from "../styles/components/Navbar.module.scss";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { useTheme } from "next-themes";
-import Button from "./Button";
 import { Moon, Sun } from "lucide-react";
+import Button from "./Button";
 import { dark } from "@clerk/themes";
+import { useTheme } from "next-themes";
+import { usePathname } from "next/navigation";
+
+import sc from "@styles/components/Navbar.module.scss";
 
 export default function Navbar() {
   const pathname = usePathname();

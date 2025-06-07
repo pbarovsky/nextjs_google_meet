@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import sc from "../styles/components/Calendar.module.scss";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import Button from "./Button";
+import Button from "../../Button";
+
+import sc from "@styles/components/Calendar.module.scss";
 
 interface CalendarProps {
   value: string;
@@ -23,7 +24,7 @@ const months = [
   "December",
 ];
 
-const Calendar: React.FC<CalendarProps> = ({ value, onChange }) => {
+export default function Calendar({ value, onChange }: CalendarProps) {
   const [year, setYear] = useState<number>(parseInt(value.slice(0, 4)));
   const [month, setMonth] = useState<number>(parseInt(value.slice(5, 7)) - 1);
   const selectedDay = parseInt(value.slice(8, 10));
@@ -86,6 +87,4 @@ const Calendar: React.FC<CalendarProps> = ({ value, onChange }) => {
       </div>
     </div>
   );
-};
-
-export default Calendar;
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import sc from "../styles/pages/Error.module.scss";
+import sc from "@styles/pages/Error.module.scss";
 
 export default function ErrorPage() {
   return (

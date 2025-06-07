@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import Calendar from "./Calendar";
-import TimePicker from "./TimePicker";
-import sc from "../styles/components/DatePicker.module.scss";
-import Button from "./Button";
+import Calendar from "./ui/Calendar";
+import TimePicker from "./ui/Time";
+import sc from "@styles/components/DatePicker.module.scss";
+import Button from "../Button";
 import { CalendarDays, X } from "lucide-react";
-import Input from "./Input";
+import Input from "../Input";
 
 interface DatePickerProps {
   value: string;
@@ -16,7 +16,7 @@ const formatDateTime = (date: string, time: string) => {
   return `${dd}.${mm}.${yyyy}, ${time}`;
 };
 
-const DatePicker: React.FC<DatePickerProps> = ({ value, onChange }) => {
+export default function DatePicker({ value, onChange }: DatePickerProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [date, setDate] = useState(value.slice(0, 10)); // YYYY-MM-DD
   const [time, setTime] = useState(value.slice(11, 16)); // HH:mm
@@ -98,6 +98,4 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange }) => {
       )}
     </div>
   );
-};
-
-export default DatePicker;
+}
