@@ -2,7 +2,11 @@
 
 import { useUser } from "@clerk/nextjs";
 import { Copy } from "lucide-react";
-import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
+import {
+  Call,
+  MemberRequest,
+  useStreamVideoClient,
+} from "@stream-io/video-react-sdk";
 import { useId, useState } from "react";
 import Textarea from "@/components/Textarea";
 import Button from "@/components/Button";
@@ -12,11 +16,13 @@ import DatePicker from "@/components/DatePicker/DatePicker";
 import Loader from "@/components/Loader";
 
 import sc from "@styles/pages/CreateMeetingsPage.module.scss";
+import { getUserId } from "./actions";
 
 export default function CreateMeetingsPage() {
   const [descriptionInput, setDescriptionInput] = useState("");
   const [startTimeInput, setStartTimeInput] = useState("");
   const [participantsInput, setParticipantsInput] = useState("");
+
   const [call, setCall] = useState<Call>();
 
   const client = useStreamVideoClient();
@@ -30,10 +36,30 @@ export default function CreateMeetingsPage() {
 
     try {
       const id = crypto.randomUUID();
-      const call = client.call("default", id);
+
+      const callType = participantsInput ? "private-meeting" : "default";
+
+      const call = client.call(callType, id);
+
+      const memberEmails = participantsInput
+        .split(",")
+        .map((email) => email.trim());
+
+      const memberIds = await getUserId(memberEmails);
+
+      const members: MemberRequest[] = memberIds
+        .map((id) => ({ user_id: id, role: "call_member" }))
+        .concat({ user_id: user.id, role: "call_member" })
+        .filter(
+          (v, i, a) => a.findIndex((v2) => v2.user_id === v.user_id) === i
+        );
+
+      const starts_at = new Date(startTimeInput || Date.now()).toISOString();
 
       await call.getOrCreate({
         data: {
+          starts_at,
+          members,
           custom: {
             description: descriptionInput,
           },

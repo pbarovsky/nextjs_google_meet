@@ -49,7 +49,11 @@ export default function Navbar() {
           />
         </SignedIn>
         <SignedOut>
-          <SignInButton />
+          <SignInButton>
+            <Link className={sc.navLink} href="">
+              Sign in
+            </Link>
+          </SignInButton>
         </SignedOut>
       </div>
     </header>

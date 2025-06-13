@@ -1,6 +1,6 @@
 "use server";
 
-import { currentUser } from "@clerk/nextjs/server";
+import { clerkClient, currentUser, User } from "@clerk/nextjs/server";
 import { StreamClient } from "@stream-io/node-sdk";
 
 export async function getToken() {
@@ -30,4 +30,13 @@ export async function getToken() {
   console.log("Generated token: ", token);
 
   return token;
+}
+
+export async function getUserId(emailAddress: string[]) {
+  const clerkClientInstance = await clerkClient();
+  const response = await clerkClientInstance.users.getUserList({
+    emailAddress: emailAddress,
+  });
+
+  return response.data.map((user: User) => user.id);
 }

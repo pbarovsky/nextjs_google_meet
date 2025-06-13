@@ -11,3 +11,11 @@
 .str-video__notification {
   color: white;
 }
+
+.str-video {
+  --str-video__primary-color: #f0d540;
+  --str-video__secondary-color: #90ee02;
+  --str-video__text-color1: #ffffff;
+  --str-video__border-radius-circle: 8px;
+  // --str-video__icon--download: url("base64 encoded SVG");
+}

@@ -1,11 +1,9 @@
+@use "./themes.scss" as th;
+
 *,
 *:before,
 *:after {
   box-sizing: border-box;
-}
-
-.theme-dark {
-  background-color: #000000;
 }
 
 html,
@@ -113,4 +111,18 @@ input {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.theme-dark {
+  background-color: #000000;
+}
+
+.theme-light ::selection {
+  background-color: rgba(240, 213, 64, 0.2);
+  color: #000000;
+}
+
+.theme-dark ::selection {
+  background-color: rgba(240, 213, 64, 0.2);
+  color: #ffffff;
 }
